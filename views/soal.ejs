@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ujian TIK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/timer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <h1>Ujian TIK</h1>
+            <p>
+                Nama: <strong>
+                    <%= query.nama %>
+                </strong> |
+                Kelas: <strong>
+                    <%= query.kelas %>
+                </strong>
+            </p>
+        </div>
+
+        <div id="timer" class="timer">
+            ⏱ 20:00
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="container">
+        <form method="POST" action="/submit">
+
+            <input type="hidden" name="nama" value="<%= query.nama %>">
+            <input type="hidden" name="kelas" value="<%= query.kelas %>">
+
+            <% soal.forEach((s, i)=> { %>
+                <section class="question-card">
+
+                    <div class="question-header">
+                        <span class="question-number">
+                            <%= i + 1 %>
+                        </span>
+                        <span class="question-text">
+                            <%= s.pertanyaan %>
+                        </span>
+                    </div>
+
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="soal_<%= s.id %>" value="A" required>
+                            <span>A. <%= s.a %></span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="soal_<%= s.id %>" value="B">
+                            <span>B. <%= s.b %></span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="soal_<%= s.id %>" value="C">
+                            <span>C. <%= s.c %></span>
+                        </label>
+                    </div>
+
+                </section>
+                <% }) %>
+
+                    <div class="submit-wrapper">
+                        <button type="submit" class="submit-btn">
+                            Kirim Jawaban
+                        </button>
+                    </div>
+
+        </form>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<h2>Data Hasil Ujian</h2>
+<table>
+    <tr>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Skor</th>
+    </tr>
+    <% data.forEach(d=> { %>
+        <tr>
+            <td>
+                <%= d.nama %>
+            </td>
+            <td>
+                <%= d.kelas %>
+            </td>
+            <td>
+                <%= d.skor %>
+            </td>
+        </tr>
+        <% }) %>
+</table>
