@@ -5,14 +5,13 @@ const path = require("path");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
+app.set("views", path.join(__dirname, "..", "views"));
 app.set("view engine", "ejs");
 
-const ujianRoutes = require("./routes/ujian");
+const ujianRoutes = require("../routes/ujian");
 app.use("/", ujianRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log("Server running on port", PORT);
-});
+// ❌ JANGAN app.listen
+module.exports = app;
